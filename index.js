@@ -84,7 +84,7 @@ function getData(swagger, apiPath, operation, response, config, info) {
     pathParameters: [],
     formParameters: [],
     queryApiKey: null,
-    headerApiKey: null,
+    headerApiKey: [],
     headerSecurity: null,
     path: '',
     isLoadTest: false,
@@ -132,8 +132,7 @@ function getData(swagger, apiPath, operation, response, config, info) {
             data.queryApiKey =
             {name: element, type: securityType.name};
           } else if (securityType.in === 'header') {
-            data.headerApiKey =
-            {name: element, type: securityType.name};
+            data.headerApiKey.push({name: element, type: securityType.name});
           }
           break;
         case 'oauth2':

@@ -26,7 +26,9 @@
       })
       {{/if}}
       {{#if headerApiKey}}
-      .set('{{headerApiKey.type}}', process.env.{{headerApiKey.name}})
+        {{#each headerApiKey}}
+        .set('{{this.type}}', process.env.{{this.name}})
+        {{/each}}
       {{/if}}
       {{#is contentType 'application/json'}}
       {{#if request}}

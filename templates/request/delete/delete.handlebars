@@ -22,8 +22,8 @@
         headers: {
           'Content-Type': '{{contentType}}'{{#if headerParameters}},
           {{#each headerParameters}}'{{this.name}}': {{requestDataParamFormatter this.name 'string' ../requestParameters}}{{#unless @last}},
-          {{/unless}}{{/each}}{{/if}}{{#if headerApiKey}},
-          {{headerApiKey.type}}: process.env.{{headerApiKey.name}}{{/if}}{{#if headerSecurity}},
+          {{/unless}}{{/each}}{{/if}}{{#if headerApiKey}}{{#each headerApiKey}},
+          {{this.type}}: process.env.{{this.name}}{{/each}}{{/if}}{{#if headerSecurity}},
           Authorization: '{{headerSecurity.type}} ' + process.env.{{headerSecurity.name}}{{/if}}
         }
       },
